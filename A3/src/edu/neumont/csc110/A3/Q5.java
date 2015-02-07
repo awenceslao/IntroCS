@@ -6,25 +6,22 @@ package edu.neumont.csc110.A3;
  */
 public class Q5 {
 	
-	public static void addressBook(String name, boolean hasAddress,String address, boolean likeFruit, String fruit){
+	public static void addressBook(String name, String address, boolean likeFruit, String fruit){
 		System.out.print("Hi. My name is " + name + ". ");
 		
-		if(hasAddress == true ){
-			System.out.print("I live at " + address + ". ");
-		}
-
 		
 		if(likeFruit == true){
 			System.out.println("I like " + fruit + ".");
 		}
 		else{
-			System.out.println("I don't like " + fruit + ".");
+			System.out.println(" ");
 		}
 	}
 	
 
 	public static void main(String[] args) {
-		addressBook("James", true, "Fakerr dnab ave", true, "apples and bananas");
+		//same as q3 and a4 but with the last parameter, the user must manually enter multiple fruits
+		addressBook("James", "Fakerr dnab ave", true, "apples and bananas");
 		
 	/*	System.out.println("Hi.  My name is Bob.  I live at 123 Main street.  I like apples.");
 		System.out.println("Hi.  My name is Alice.  I live at 8a Sinclair street.  I like peaches and pears and plums and apples.");

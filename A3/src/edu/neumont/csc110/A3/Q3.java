@@ -22,7 +22,8 @@ public class Q3 {
 	
 
 	public static void main(String[] args) {
-		//Testing method
+		//Testing method, user inputs a string for a name, address and a fruit, 
+		//and a boolean answer as to where they like fruit or not
 		addressBook("Steve", "123 abc ave", "oranges", false);
 		
 /*		System.out.println("Hi.  My name is Bob.  I live at 123 Main street.  I like apples.");

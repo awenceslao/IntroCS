@@ -22,7 +22,7 @@ public class Q1 {
 	
 
 	public static void main(String[] args) {
-		//My code
+		//Runs my code with simulated user input
 		compare(15, 7);
 		
 		

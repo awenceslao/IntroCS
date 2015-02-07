@@ -6,13 +6,9 @@ package edu.neumont.csc110.A3;
  */
 public class Q4 {
 	
-	public static void addressBook(String name, boolean hasAddress,String address, boolean likeFruit, String fruit){
+	public static void addressBook(String name, String address, boolean likeFruit, String fruit){
 		System.out.print("Hi. My name is " + name + ". ");
-		
-		if(hasAddress == true ){
-			System.out.print("I live at " + address + ". ");
-		}
-
+	
 		
 		if(likeFruit == true){
 			System.out.println("I like " + fruit + ".");
@@ -23,7 +19,7 @@ public class Q4 {
 	}
 
 	public static void main(String[] args) {
-		addressBook("Luke", true, "321 fake view", true, "bananas");
+		addressBook("Luke", "321 fake view", true, "bananas");
 		
 		/*System.out.println("Hi.  My name is Bob.  I live at 123 Main street.");
 		System.out.println("Hi.  My name is Alice.  I live at 8a Sinclair street.  I like peaches.");
