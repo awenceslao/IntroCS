@@ -33,6 +33,7 @@ public class mathProgram {
 		
 	}
 	
+	/*
 	//using math.random to generate random number with 5 decimal points between -1000 and 1000
 	//(Math.random() * 2000) -1000) ---> random double between -1000 and 1000
 	//Math.round(....) * 1x.00)/1x.00 ----> rounds number and multiplies & divides it to give certain decimal points
@@ -41,11 +42,21 @@ public class mathProgram {
 		double random = (int)( (Math.random() * 100) +1 );
 		System.out.println(random);
 	}
+	*/
 	
 	public static void main(String[] args){
 		//run();
-		add.hardAddition();
-		//bae();
+		div.hardDivision();
+		//fit.fixDivision();
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 }

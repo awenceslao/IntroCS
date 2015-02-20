@@ -188,6 +188,7 @@ public class Addition {
 		} while (reviewingQuestions);
 	}
 	
+	
 	public static void hardAddition() {
 		double score = 0;
 		double percent = 0;
@@ -212,6 +213,7 @@ public class Addition {
 				System.out.println(question);
 				double answer = input.nextDouble();
 				double sum = randomNum1 + randomNum2;
+				sum = Math.round(sum * 100000.00)/100000.00;
 				System.out.println("The answer is: " + sum);
 				if (answer == sum) {
 					score++;

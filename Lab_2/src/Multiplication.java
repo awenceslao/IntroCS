@@ -9,9 +9,6 @@ public class Multiplication {
 	static boolean choosingMath = true;
 	static ArrayList<String> testScores = new ArrayList<String>();
 	
-	// format this class
-	// add boolean choosingmath, change review to reviewingQuestions, add
-	// arraylist, add copypasta of String finale, to division class
 
 	public void chooseMath() {
 		do {
@@ -64,8 +61,8 @@ public class Multiplication {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = r.nextInt(5) + 1;
-				int randomNum2 = r.nextInt(5) + 1;
+				int randomNum1 = (int)((Math.random() * 5) +1);
+				int randomNum2 = (int)((Math.random() * 5) +1);
 				String question = ("What is " + randomNum1 + "*" + randomNum2 + "?");
 
 				System.out.println(question);
@@ -125,8 +122,8 @@ public class Multiplication {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = r.nextInt(100) + 1;
-				int randomNum2 = r.nextInt(100) + 1;
+				int randomNum1 = (int)(Math.random() * 100);
+				int randomNum2 = (int)(Math.random() * 100);
 				String question = ("What is " + randomNum1 + "*" + randomNum2 + "?");
 
 				System.out.println(question);
@@ -186,13 +183,14 @@ public class Multiplication {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				double randomNum1 = r.nextInt(100) + 1;
-				double randomNum2 = r.nextInt(100) + 1;
+				double randomNum1 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
+				double randomNum2 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
 				String question = ("What is " + "(" + randomNum1 + ")" + "*" + "(" + randomNum2 + ")" + "?");
 
 				System.out.println(question);
 				double answer = input.nextDouble();
 				double product = randomNum1 * randomNum2;
+				product = Math.round(product * 100000.00)/100000.00;
 				System.out.println("The answer is: " + product);
 				if (answer == product) {
 					score++;
