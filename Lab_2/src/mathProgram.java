@@ -7,6 +7,7 @@ public class mathProgram {
 	static Multiplication mult = new Multiplication();
 	static Division div = new Division();
 	
+	
 	public static void run(){
 		System.out.println("MATH BUDDY v1.0");
 		System.out.println("What kind of math are we doing today?");
@@ -33,27 +34,24 @@ public class mathProgram {
 		
 	}
 	
-	/*
-	//using math.random to generate random number with 5 decimal points between -1000 and 1000
-	//(Math.random() * 2000) -1000) ---> random double between -1000 and 1000
-	//Math.round(....) * 1x.00)/1x.00 ----> rounds number and multiplies & divides it to give certain decimal points
-	public static void bae(){
-		//double random = Math.round(( (Math.random() * 2000) -1000)*1000.00)/1000.00;
-		double random = (int)( (Math.random() * 100) +1 );
-		System.out.println(random);
-	}
-	*/
-	
 	public static void main(String[] args){
 		//run();
 		div.hardDivision();
-		//fit.fixDivision();
+
+		/*
+		int a = 1;
+		int b = 55;
+		int c = 200;
+		int max = (Math.max(  Math.max(a, b)  , c) );
+		int min = (Math.min(  Math.min(a, b)  , c) );
 		
-		
-		
-		
-		
-		
+			3rd			2nd			  (1st                   1st)                 (1st)                    
+		Minimum of( minimum of( (max of 'a' and 'b') & (max of 'b' and 'c') & (max of('a' & 'c'))
+		int median = Math.min(  Math.min(Math.max(a,b), Math.max(b,c)),         Math.max(a,c));
+		System.out.println("min " + min);
+		System.out.println("max " + max);
+		System.out.println("median " + median);
+		*/
 		
 		
 		

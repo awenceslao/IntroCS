@@ -1,5 +1,8 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class Addition {
 	static Scanner input = new Scanner(System.in);
@@ -7,6 +10,8 @@ public class Addition {
 	static boolean reviewingQuestions = true;
 	static ArrayList<String> testScores = new ArrayList<String>();
 	
+	//******************FUNCTIONING******************************\\
+					//add the spec about returning average score from multiple iterations
 	public void chooseMath() {
 		do{
 			System.out.println("Select the difficulty level or press 4 to check quiz scores ");
@@ -38,27 +43,7 @@ public class Addition {
 
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////            TO FIX:
-	////////////////////////////////////////////---Fix division's math
-	////////////////////////////////////////////---Make total returned scores return combined total
-	////////////////////////////////////////////      ex: 3/5 & 1/3 as scores, return as total score: 14/15
-	////////////////////////////////////////////---refactor
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-	
-	/*public static void generateQuestions(int numOfQuestions){
-		int[] questions = new int[numOfQuestions];
-		System.out.print("What is ");
-		System.out.print(""random numbers to be made from a different class);
-		System.out.println(" ");
-		int answer = input.nextInt();
-	}
-	*/
-	
-	
-	
 	
 	
 	public static void easyAddition() {
@@ -78,13 +63,13 @@ public class Addition {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = (int)((Math.random() * 5) +1);
-				int randomNum2 = (int)( (Math.random() * 5) +1);
-				String question = ("What is " + randomNum1 + "+" + randomNum2 + "?");
+				int[] randomNum = {(int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1) };
 
+				String question = ("What is " + randomNum[0] + "+" + randomNum[1] + "+" + randomNum[2] + "+" + randomNum[3] +  "?");
+				
 				System.out.println(question);
 				int answer = input.nextInt();
-				int sum = randomNum1 + randomNum2;
+				int sum = randomNum[0] + randomNum[1] + randomNum[2] + randomNum[3];
 				System.out.println("The answer is: " + sum);
 				if (answer == sum) {
 					score++;
@@ -142,13 +127,12 @@ public class Addition {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = (int)(Math.random() * 100);
-				int randomNum2 = (int)(Math.random() * 100);
-				String question = ("What is " + randomNum1 + "+" + randomNum2 + "?");
-
+				int[] randomNum = {(int)(Math.random() * 100), (int)(Math.random() * 100), (int)(Math.random() * 100)};
+				String question = ("What is " + randomNum[0] + "+" + randomNum[1] + "+" + randomNum[2] + "?");
+				
 				System.out.println(question);
 				int answer = input.nextInt();
-				int sum = randomNum1 + randomNum2;
+				int sum = randomNum[0] + randomNum[1] + randomNum[2];
 				System.out.println("The answer is: " + sum);
 				if (answer == sum) {
 					score++;
@@ -206,13 +190,13 @@ public class Addition {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				double randomNum1 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
-				double randomNum2 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
-				String question = ("What is " + "(" + randomNum1 + ")" + " + " + "(" + randomNum2 + ")" + "?");
-
+				DecimalFormat nf = new DecimalFormat("##.#####");
+				double[] randomNum = { ((Math.random() * 2000)- 1000) , ((Math.random() * 2000)- 1000) };
+				String question = ("What is " + "(" + nf.format(randomNum[0]) + ")" + " + " + "(" + nf.format(randomNum[1]) + ")" + "?");
+				
 				System.out.println(question);
 				double answer = input.nextDouble();
-				double sum = randomNum1 + randomNum2;
+				double sum = randomNum[0] + randomNum[1];
 				sum = Math.round(sum * 100000.00)/100000.00;
 				System.out.println("The answer is: " + sum);
 				if (answer == sum) {

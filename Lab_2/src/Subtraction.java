@@ -1,6 +1,8 @@
+import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Subtraction {
 	static Random r = new Random();
@@ -51,7 +53,7 @@ public class Subtraction {
 		do {
 			System.out.println("How many questions do you want to answer? ");
 			int numOfQuestions = input.nextInt();
-			if (numOfQuestions <= 0 || numOfQuestions > 20) {
+			if (numOfQuestions <= 0 || numOfQuestions > 20) {		//validation
 				System.out.println("That number of questions isn't allowed");
 				System.out.println("How many questions do you want to answer? ");
 				numOfQuestions = input.nextInt();
@@ -61,13 +63,14 @@ public class Subtraction {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = (int)((Math.random() * 5) +1);
-				int randomNum2 = (int)( (Math.random() * 5) +1);
-				String question = ("What is " + (Math.max(randomNum1, randomNum2)) + "-" + (Math.min(randomNum1, randomNum2)) + "?");
-
+				int[] randomNum = { (int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1)  };
+				Arrays.sort(randomNum);
+				
+				String question = ("What is " + randomNum[3] + "-" + randomNum[2] + "-" + randomNum[1] + "-" + randomNum[0] + "?");
+				
 				System.out.println(question);
 				int answer = input.nextInt();
-				int difference = Math.max(randomNum1, randomNum2) - (Math.min(randomNum1, randomNum2));
+				int difference = randomNum[3] - randomNum[2] - randomNum[1] - randomNum[0]; 
 				System.out.println("The answer is: " + difference);
 				if (answer == difference) {
 					score++;
@@ -122,13 +125,14 @@ public class Subtraction {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				int randomNum1 = (int)(Math.random() * 100);
-				int randomNum2 = (int)(Math.random() * 100);
-				String question = ("What is " + (Math.max(randomNum1, randomNum2)) + "-" + (Math.min(randomNum1, randomNum2)) + "?");
+				int[] randomNum = { (int)(Math.random() * 100), (int)(Math.random() * 100), (int)(Math.random() * 100)  };
+				Arrays.sort(randomNum);
+				
+				String question = ("What is " + randomNum[2] + "-" +  randomNum[1] + "-" + randomNum[0] + "?");
 
 				System.out.println(question);
 				int answer = input.nextInt();
-				int difference = Math.max(randomNum1, randomNum2) - (Math.min(randomNum1, randomNum2));
+				int difference = randomNum[2] - randomNum[1] - randomNum[0];
 				System.out.println("The answer is: " + difference);
 				if (answer == difference) {
 					score++;
@@ -183,13 +187,14 @@ public class Subtraction {
 			int incrementWrong = 0;
 
 			for (int i = 0; i < numOfQuestions; i++) {
-				double randomNum1 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
-				double randomNum2 = Math.round(( (Math.random() * 2000) -1000)*100000.00)/100000.00;
-				String question = ("What is " + "(" + (Math.max(randomNum1, randomNum2)) + ")" + "-" + "(" + (Math.min(randomNum1, randomNum2)) + ")" + "?");
-
+				DecimalFormat nf = new DecimalFormat("##.#####");
+				double[] randomNum = { ((Math.random() * 2000) -1000), ((Math.random() * 2000) -1000) };
+				
+				String question = ("What is " + "(" + nf.format(randomNum[0]) + ")" + "-" + "(" + nf.format(randomNum[1]) + ")" + "?");
+				
 				System.out.println(question);
 				double answer = input.nextDouble();
-				double difference = Math.max(randomNum1, randomNum2) - (Math.min(randomNum1, randomNum2));
+				double difference = randomNum[0] - randomNum[1];
 				difference = Math.round(difference * 100000.00)/100000.00;
 				System.out.println("The answer is: " + difference);
 				if (answer == difference) {
