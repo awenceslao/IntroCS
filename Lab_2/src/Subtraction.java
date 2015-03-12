@@ -65,7 +65,7 @@ public class Subtraction {
 			for (int i = 0; i < numOfQuestions; i++) {
 				int[] randomNum = { (int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1),(int)((Math.random() * 5) +1)  };
 				Arrays.sort(randomNum);
-				
+			
 				String question = ("What is " + randomNum[3] + "-" + randomNum[2] + "-" + randomNum[1] + "-" + randomNum[0] + "?");
 				
 				System.out.println(question);
