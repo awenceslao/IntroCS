@@ -37,8 +37,7 @@ public class mathProgram {
 	
 	public static void main(String[] args){
 		//run();
-		add.chooseMath();
-
+		mult.chooseMath();
 		
 		
 		

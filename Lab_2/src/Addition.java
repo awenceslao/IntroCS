@@ -1,27 +1,21 @@
-import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
-	
 
 public class Addition {
 	static Scanner input = new Scanner(System.in);
 	static boolean choosingMath = true;
 	static boolean reviewingQuestions = true;
-	static ArrayList<String> additionScores = new ArrayList<String>();
 	static ArrayList<String> reviewWrongQuestions = new ArrayList<String>();
 	static Random r;
 	public static int score = 0;
 	public static double percent = 0;
-	public static int numOfQuestions;
+	public static double numerator = 0;
+	public static double denominator = 0;
 	
-	
-	//******************FUNCTIONING******************************\\
-					//add the spec about returning average score from multiple iterations
 	public void chooseMath() {
-		do{
-			System.out.println("Select the difficulty level or press 4 to check quiz scores ");
+		do {
+			System.out.println("Select the difficulty level");
 			System.out.println("1. Easy  2.Medium  3.Hard  0.Exit");
 			int difficulty = input.nextInt();
 			switch (difficulty) {
@@ -37,26 +31,20 @@ public class Addition {
 			case 3:
 				hard();
 				break;
-			case 4:
-				for (String scores : additionScores) {
-					System.out.println(scores);
-				}
-				break;
 			default:
 				System.out.println("Only choose 1.Easy  2.Medium or  3.Hard");
 				difficulty = input.nextInt();
-		}
-		}while(choosingMath);
-
+			}
+		} while (choosingMath);
 	}
 
-	public static int Beta(int numsPerLine, int range, int zeroModifier) {
+	public static int alpha(int numsPerLine, int range, int zeroModifier) {
 		r = new Random();
 		int ans = 0;
 		int[] alpha = new int[numsPerLine];
-		String output = "What is ";		
+		String output = "What is ";
 		for (int i = 0; i < alpha.length; i++) {
-			alpha[i] = r.nextInt(range) + zeroModifier;
+			alpha[i] = (int) ((Math.random() * range) + zeroModifier);
 			output += alpha[i] + " + ";
 			ans += alpha[i];
 		}
@@ -64,19 +52,42 @@ public class Addition {
 		output += " ?";
 		System.out.println(output);
 		int answer = input.nextInt();
-		if(answer == ans){
+		if (answer == ans) {
 			score++;
-		}
-		else {
+		} else {
 			reviewWrongQuestions.add(output + " Your answer: " + answer + " Answer: " + ans);
 		}
 		System.out.println("The answer is " + ans);
 		return score;
 	}
-
-	//**********************************************************************\\
 	
-	//need to multiply score and num of questions of each iteration and return a string similar to finalScore
+	/**
+	 * For hard difficulty only
+	 */
+	public static double beta() {
+		r = new Random();
+		double ans = 0;
+		double[] alpha = new double[2];
+		String output = "What is ";
+		for (int i = 0; i < alpha.length; i++) {
+			alpha[i] = Math.round(((Math.random() * 2000) - 1000) * 10000.00) / 100000.00;
+			output += alpha[i] + " + ";
+			ans += alpha[i];
+		}
+		output = output.substring(0, output.length() - 3);
+		output += " ?";
+		System.out.println(output);
+		double answer = input.nextDouble();
+		ans = Math.round(ans * 100000.00) / 100000.00;
+		if (answer == ans) {
+			score++;
+		} else {
+			reviewWrongQuestions.add(output + " Your answer: " + answer + " Answer: " + ans);
+		}
+		System.out.println("The answer is " + ans);
+		return score;
+	}
+	
 	public static void easy() {
 		do {
 			System.out.println("How many questions do you want to answer? ");
@@ -87,29 +98,29 @@ public class Addition {
 				numOfQuestions = input.nextInt();
 			}
 			for (int i = 0; i < numOfQuestions; i++) {
-				Beta(4, 5, 1);
+				alpha(4, 5, 1);
 			}
-			String finalScore = "Final score: " + score + "/" + numOfQuestions + " " +  Math.round((( (double)score/(double)numOfQuestions)*100)) + "%"  ;
+			String finalScore = "\nFinal score: " + score + "/" + numOfQuestions + "  " + Math.round((((double) score / (double) numOfQuestions) * 100)) + "%";
 			System.out.println(finalScore);
+			numerator += score;
+			denominator += numOfQuestions;
+			System.out.println("Running Total For Addition : " + numerator + "/" + denominator + " " + Math.round(((double) numerator / (double) denominator) * 100) + "%\n");
 			System.out.println("Review of Questions Answered wrong: ");
 			for (String each : reviewWrongQuestions) {
 				System.out.println(each);
 			}
-			System.out.println("1. Review Answer 2. return to menu");
+			System.out.println("\n1. Return to menu  2. Exit");
 			int refactor = input.nextInt();
 			switch (refactor) {
 			case 1:
-				for (String each : reviewWrongQuestions) {
-					System.out.println(each);
-				}
+				reviewWrongQuestions.clear();
+				score = 0;
+				numOfQuestions = 0;
 				reviewingQuestions = false;
 				break;
 			case 2:
-				reviewWrongQuestions.clear();
-				additionScores.add("Score: ");
 				reviewingQuestions = false;
-				break;
-			case 3:
+				choosingMath = false;
 				break;
 			default:
 				System.out.println("Type 1.yes  or  2.no  only");
@@ -118,74 +129,7 @@ public class Addition {
 		} while (reviewingQuestions);
 	}
 	
-/*	public static void easy() {
-		int score = 0;
-		double percent = 0;
-
-		do {
-			System.out.println("How many questions do you want to answer? ");
-			int numOfQuestions = input.nextInt();
-			if (numOfQuestions <= 0 || numOfQuestions > 20) {
-				System.out.println("That number of questions isn't allowed");
-				System.out.println("How many questions do you want to answer? ");
-				numOfQuestions = input.nextInt();
-			}
-
-			String wrongAnswers[] = new String[numOfQuestions];
-			int incrementWrong = 0;
-
-			for (int i = 0; i < numOfQuestions; i++) {
-				int[] randomNum = {(int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1), (int)((Math.random() * 5) +1) };
-
-				String question = ("What is " + randomNum[0] + "+" + randomNum[1] + "+" + randomNum[2] + "+" + randomNum[3] +  "?");
-				
-				System.out.println(question);
-				int answer = input.nextInt();
-				int sum = randomNum[0] + randomNum[1] + randomNum[2] + randomNum[3];
-				System.out.println("The answer is: " + sum);
-				if (answer == sum) {
-					score++;
-				}
-				if (answer != sum) {
-					wrongAnswers[incrementWrong] = (question + " You answered: " + answer + " The correct answer is: " + sum);
-					incrementWrong++;
-				}
-			}
-
-			percent = ((double) score / (double) numOfQuestions) * 100;
-			String finale = ("Score: " + score + "/" + numOfQuestions + " " + Math.round(percent) + "%");
-			testScores.add(finale);
-			
-			System.out.println("Final score: " + finale);
-			
-			
-
-			System.out.println("Review answers?  1.yes or 2. no ");
-			int refactor = input.nextInt();
-			switch (refactor) {
-			case 1:
-				for (String iteration : wrongAnswers) {
-					if (iteration != null) {
-						System.out.println(iteration);
-					}
-				}
-				reviewingQuestions = false;
-				break;
-			case 2:
-				reviewingQuestions = false;
-				break;
-			default:
-				System.out.println("Type 1.yes  or  2.no  only");
-				refactor = input.nextInt();
-			}
-
-		} while (reviewingQuestions);
-
-	}*/
-	
 	public static void medium() {
-		int score = 0;
-		double percent = 0;
 		do {
 			System.out.println("How many questions do you want to answer? ");
 			int numOfQuestions = input.nextInt();
@@ -194,119 +138,77 @@ public class Addition {
 				System.out.println("How many questions do you want to answer? ");
 				numOfQuestions = input.nextInt();
 			}
-
-			String wrongAnswers[] = new String[numOfQuestions];
-			int incrementWrong = 0;
-
 			for (int i = 0; i < numOfQuestions; i++) {
-				int[] randomNum = {(int)(Math.random() * 100), (int)(Math.random() * 100), (int)(Math.random() * 100)};
-				
-				String question = ("What is " + randomNum[0] + "+" + randomNum[1] + "+" + randomNum[2] + "?");
-				
-				System.out.println(question);
-				int answer = input.nextInt();
-				int sum = randomNum[0] + randomNum[1] + randomNum[2];
-				System.out.println("The answer is: " + sum);
-				if (answer == sum) {
-					score++;
-				}
-				if (answer != sum) {
-					wrongAnswers[incrementWrong] = (question + " You answered: " + answer + " The correct answer is: " + sum);
-					incrementWrong++;
-				}
+				alpha(3, 100, 0);
 			}
-			percent = ((double) score / (double) numOfQuestions) * 100;
-			String finale = ("Score: " + score + "/" + numOfQuestions + " " + Math.round(percent) + "%");
-			additionScores.add(finale);
-			
-			System.out.println("Final score: " + finale);
-
-			
-			System.out.println("Review answers?  1.yes or 2. no ");
+			String finalScore = "\nFinal score: " + score + "/" + numOfQuestions + "  " + Math.round((((double) score / (double) numOfQuestions) * 100)) + "%";
+			System.out.println(finalScore);
+			numerator += score;
+			denominator += numOfQuestions;
+			System.out.println("Running Total For Addition : " + numerator + "/" + denominator + " " + Math.round(((double) numerator / (double) denominator) * 100) + "%\n");
+			System.out.println("Review of Questions Answered wrong: ");
+			for (String each : reviewWrongQuestions) {
+				System.out.println(each);
+			}
+			System.out.println("\n1. Return to menu  2. Exit");
 			int refactor = input.nextInt();
 			switch (refactor) {
 			case 1:
-				for (String iteration : wrongAnswers) {
-					if (iteration != null) {
-						System.out.println(iteration);
-					}
-				}
+				reviewWrongQuestions.clear();
+				score = 0;
+				numOfQuestions = 0;
 				reviewingQuestions = false;
-
 				break;
 			case 2:
 				reviewingQuestions = false;
+				choosingMath = false;
 				break;
 			default:
 				System.out.println("Type 1.yes  or  2.no  only");
 				refactor = input.nextInt();
 			}
-
 		} while (reviewingQuestions);
 	}
 	
 	public static void hard() {
-		double score = 0;
-		double percent = 0;
-		
 		do {
 			System.out.println("How many questions do you want to answer? ");
-			double numOfQuestions = input.nextDouble();
+			int numOfQuestions = input.nextInt();
 			if (numOfQuestions <= 0 || numOfQuestions > 20) {
 				System.out.println("That number of questions isn't allowed");
 				System.out.println("How many questions do you want to answer? ");
-				numOfQuestions = input.nextDouble();
+				numOfQuestions = input.nextInt();
 			}
-			
-			String wrongAnswers[] = new String[(int) numOfQuestions];
-			int incrementWrong = 0;
-
 			for (int i = 0; i < numOfQuestions; i++) {
-				DecimalFormat nf = new DecimalFormat("##.#####");
-				double[] randomNum = { ((Math.random() * 2000)- 1000) , ((Math.random() * 2000)- 1000) };
-				String question = ("What is " + "(" + nf.format(randomNum[0]) + ")" + " + " + "(" + nf.format(randomNum[1]) + ")" + "?");
-				
-				System.out.println(question);
-				double answer = input.nextDouble();
-				double sum = randomNum[0] + randomNum[1];
-				sum = Math.round(sum * 100000.00)/100000.00;
-				System.out.println("The answer is: " + sum);
-				if (answer == sum) {
-					score++;
-				}
-				if (answer != sum) {
-					wrongAnswers[incrementWrong] = (question + " You answered: " + answer + " The correct answer is: " + sum);
-					incrementWrong++;
-				}
+				;
+				beta();
 			}
-			percent = ((double) score / (double) numOfQuestions) * 100;
-			String finale = ("Score: " + score + "/" + numOfQuestions + " " + Math.round(percent) + "%");
-			additionScores.add(finale);
-			
-			System.out.println("Final score: " + finale);
-
-			
-			System.out.println("Review answers?  1.yes or 2. no ");
+			String finalScore = "\nFinal score: " + score + "/" + numOfQuestions + "  " + Math.round((((double) score / (double) numOfQuestions) * 100)) + "%";
+			System.out.println(finalScore);
+			numerator += score;
+			denominator += numOfQuestions;
+			System.out.println("Running Total For Addition : " + numerator + "/" + denominator + " " + Math.round(((double) numerator / (double) denominator) * 100) + "%\n");
+			System.out.println("Review of Questions Answered wrong: ");
+			for (String each : reviewWrongQuestions) {
+				System.out.println(each);
+			}
+			System.out.println("\n1. Return to menu  2. Exit");
 			int refactor = input.nextInt();
 			switch (refactor) {
 			case 1:
-				for (String iteration : wrongAnswers) {
-					if (iteration != null) {
-						System.out.println(iteration);
-					}
-				}
+				reviewWrongQuestions.clear();
+				score = 0;
+				numOfQuestions = 0;
 				reviewingQuestions = false;
-
 				break;
 			case 2:
 				reviewingQuestions = false;
+				choosingMath = false;
 				break;
 			default:
-				System.out.println("Type yes or no only");
+				System.out.println("Type 1.yes  or  2.no  only");
 				refactor = input.nextInt();
 			}
-
 		} while (reviewingQuestions);
 	}
-	
 }
